@@ -1,28 +1,35 @@
-//Set a constant value to the h1 of the document using a query selector.
-const myHeading = document.querySelector('h1'); 
-//Set the text content of the selected element to 'Hello world!'
-myHeading.textContent = 'Hello world!';
+//Get the image from the img tag.
+const myImage = document.querySelector('img');
 
-let iceCream = 'Chocolate'
-
-
-function changeHeading(){
-    //Set a constant value to the h1 of the document using a query selector.
-    const myHeading = document.querySelector('h1'); 
-    //Set the text content of the selected element to 'Hello world!'
-    myHeading.textContent = 'Hello world!';
+//When the image is clicked.
+myImage.onclick = () => {
+  //Get the src of the image, and flip it if it isn't the firefox-icon.
+  const mySrc = myImage.getAttribute('src');
+  if (mySrc === 'images/firefox-icon.png') {
+    myImage.setAttribute('src','images/firefox2.png');
+  } else {
+    myImage.setAttribute('src','images/firefox-icon.png');
+  }
 }
 
-function iceCreamConditional(iceCream){
-    if (iceCream.toLowerCase() === 'chocolate'){
-        alert('Yay, I love chocolate ice cream!');
-    } else{
-        alert('Aww, but chocolate is my favorite...');
+//Use a querySelector on the document to get the button/heading.
+let myButton = document.querySelector('button');
+let myHeading = document.querySelector('h1');
+
+//Ask the user to enter their name.
+function setUserName() {
+    const myName = prompt('Please enter your name.');
+    //If the value is null call the functon again.
+    if (!myName) {
+      setUserName();
+    //If a value was entered for myName save it to local storage, and display.
+    } else {
+      localStorage.setItem('name', myName);
+      myHeading.textContent = `Mozilla is cool, ${myName}`;
     }
-}
+  }
 
-//Change the heading to hello world.
-changeHeading()
-iceCreamConditional(iceCream)
-
-let myVariable = 'Test';
+  //When the "change user" button is clicked call setUserName function.
+  myButton.onclick = () => {
+    setUserName();
+  }
